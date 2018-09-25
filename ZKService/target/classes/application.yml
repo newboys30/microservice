@@ -1,0 +1,20 @@
+server:
+  port: 8800
+  
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
+      
+spring:
+  application:
+    name: zkservice
+    
+curator:
+  retryCount: 5
+  elapsedTimeMs: 5000
+  connectString: 192.168.1.126:2181
+  sessionTimeoutMs: 60000
+  connectionTimeoutMs: 5000
