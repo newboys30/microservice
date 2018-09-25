@@ -15,6 +15,7 @@
 		<module>DAOService</module>
 		<module>Libraries</module>
 		<module>ZKService</module>
+		<module>KafkaService</module>
 	</modules>
 
 	<parent>
