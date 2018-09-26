@@ -13,7 +13,7 @@ spring:
     name: kafkaservice
   kafka:
     bootstrap-servers:
-    - 192.168.1.126:9092
+    - 192.168.48.128:9092
     consumer:
       group-id: saas-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -21,3 +21,4 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      
