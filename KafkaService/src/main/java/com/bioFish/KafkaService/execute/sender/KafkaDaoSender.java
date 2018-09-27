@@ -1,4 +1,4 @@
-package com.bioFish.KafkaService.execute;
+package com.bioFish.KafkaService.execute.sender;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,12 +21,6 @@ public class KafkaDaoSender {
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
 	public void send() {
-		/*Message message = new Message();
-		message.setId(System.currentTimeMillis());
-		message.setMsg("Hello Kafka");
-		message.setSendTime(new Date());
-		
-		kafkaTemplate.send("testKafka", gson.toJson(message));*/
-		 kafkaTemplate.send("testKafka","hello,kafka  "  + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+		kafkaTemplate.send("testKafka","hello,kafka  "  + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
 	}
 }

@@ -13,4 +13,6 @@ public interface UserService {
 	public void updateUser(String str) throws Exception;
 	
 	public void redisTest() throws Exception;
+	
+	public void kafkaTest() throws Exception;
 }

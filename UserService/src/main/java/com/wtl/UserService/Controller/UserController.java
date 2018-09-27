@@ -47,4 +47,9 @@ public class UserController {
 		userService.redisTest();
 	}
 	
+	@PostMapping("/kafkaTest")
+	public void kafkaTest() throws Exception {
+		userService.kafkaTest();
+	}
+	
 }

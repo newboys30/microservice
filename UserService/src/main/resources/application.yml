@@ -17,3 +17,4 @@ spring:
 user:
   DAOServicePath: http://daoservice/
   RedisServicePath: http://redisservice/
+  KafkaServicePath: http://kafkaservice/

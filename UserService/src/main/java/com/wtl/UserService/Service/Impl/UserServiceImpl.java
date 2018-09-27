@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wtl.Params.DAOParam;
-import com.wtl.UserService.Service.DaoFeignService;
-import com.wtl.UserService.Service.RedisFeignService;
 import com.wtl.UserService.Service.UserService;
+import com.wtl.UserService.Service.feign.DaoFeignService;
+import com.wtl.UserService.Service.feign.KafkaFeignService;
+import com.wtl.UserService.Service.feign.RedisFeignService;
 import com.wtl.Utils.JsonUtil;
 
 @Service("userService")
@@ -22,6 +23,11 @@ public class UserServiceImpl implements UserService {
 	private RedisFeignService redisFeignService;
 	@Value("${user.RedisServicePath}")
 	private String RedisServicePath;
+	
+	@Autowired
+	private KafkaFeignService kafkaFeignService;
+	@Value("${user.KafkaServicePath}")
+	private String KafkaServicePath;
 	
 	public String getUserById (String str) throws Exception {
 		
@@ -53,6 +59,10 @@ public class UserServiceImpl implements UserService {
 	
 	public void redisTest() throws Exception{
 		redisFeignService.stringTest("666");
+	}
+	
+	public void kafkaTest() throws Exception{
+		kafkaFeignService.generelExe("");
 	}
 		
 }
