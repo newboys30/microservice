@@ -16,6 +16,7 @@
 		<module>Libraries</module>
 		<module>ZKService</module>
 		<module>KafkaService</module>
+		<module>ConfigService</module>
 	</modules>
 
 	<parent>
