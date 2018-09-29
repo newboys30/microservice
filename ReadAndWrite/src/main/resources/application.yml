@@ -21,6 +21,20 @@ mybatis:
   type-aliases-package: com.wtl.DAOService.Entity
   mapper-locations:
   - classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  
+mapper:
+  mappers:
+  - com.wtl.DAOService.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+  
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: countSql
 
 logging:
   level:
