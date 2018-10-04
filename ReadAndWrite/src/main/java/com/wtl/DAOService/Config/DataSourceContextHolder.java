@@ -23,6 +23,24 @@ public class DataSourceContextHolder {
 	 * @return: void
 	 */
 	public static void setRead() {
-		
+		local.set(DataSourceType.read.getType());
+	}
+	
+	/**
+	 * 写库
+	 * @Title: setWrite
+	 * @Description: TODO
+	 * @return: void
+	 */
+	public static void setWrite() {
+		local.set(DataSourceType.write.getType());
+	}
+	
+	public static String getReadOrWrite() {
+		return local.get();
+	}
+	
+	public static void clear() {
+		local.remove();
 	}
 }
