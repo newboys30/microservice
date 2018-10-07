@@ -59,8 +59,19 @@ public class MybatisConfiguration {
 	@Bean
 	public AbstractRoutingDataSource roundRobinDataSouceProxy() {
 		Map<Object, Object> targetDataSources = new HashMap<Object,Object>();
+		targetDataSources.put(DataSourceType.write.getType(), writeDataSource);
+		targetDataSources.put(DataSourceType.read.getType(), readDataSource);
 		
+		final int readSize = Integer.parseInt(readDataSourceSize);
 		
+		AbstractRoutingDataSource proxy = new AbstractRoutingDataSource() {
+			
+			@Override
+			protected Object determineCurrentLookupKey() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
 		
 		return null;
 	}
