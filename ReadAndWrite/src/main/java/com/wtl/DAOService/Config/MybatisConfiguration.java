@@ -2,6 +2,7 @@ package com.wtl.DAOService.Config;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.sql.DataSource;
 
@@ -65,9 +66,14 @@ public class MybatisConfiguration {
 		final int readSize = Integer.parseInt(readDataSourceSize);
 		
 		AbstractRoutingDataSource proxy = new AbstractRoutingDataSource() {
+			private AtomicInteger count = new AtomicInteger(0);
 			
+			/**
+			 * 
+			 */
 			@Override
 			protected Object determineCurrentLookupKey() {
+				
 				// TODO Auto-generated method stub
 				return null;
 			}
