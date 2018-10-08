@@ -8,13 +8,18 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.wtl.DAOService.util.SpringContextUtil;
 
 
 /**
@@ -59,26 +64,52 @@ public class MybatisConfiguration {
 	 */
 	@Bean
 	public AbstractRoutingDataSource roundRobinDataSouceProxy() {
+		
+		/**
+		 * 将全部数据库数据放入资源中，key值必须与determineCurrentLookupKey()代码中的一致
+		 */
 		Map<Object, Object> targetDataSources = new HashMap<Object,Object>();
 		targetDataSources.put(DataSourceType.write.getType(), writeDataSource);
 		targetDataSources.put(DataSourceType.read.getType(), readDataSource);
 		
 		final int readSize = Integer.parseInt(readDataSourceSize);
 		
+		//路由
 		AbstractRoutingDataSource proxy = new AbstractRoutingDataSource() {
 			private AtomicInteger count = new AtomicInteger(0);
 			
 			/**
-			 * 
+			 * AbstractRoutingDataSource类中的一个抽象方法
+			 * 返回值为DataSource的key值
+			 * 使用这个key值可以从targetDataSources中取出相应的DataSource,否则使用默认的数据源
 			 */
 			@Override
 			protected Object determineCurrentLookupKey() {
-				
-				// TODO Auto-generated method stub
-				return null;
+				String typeKey = DataSourceContextHolder.getReadOrWrite();
+				if(null == typeKey) {
+					throw new NullPointerException("数据库路由时，决定使用哪个数据库源类型不能为空");
+				}
+				//写库
+				if(typeKey.equals(DataSourceType.write.getType())) {
+					return DataSourceType.write.getType();
+				}
+				//读库
+				return DataSourceType.read.getType();
 			}
 		};
 		
-		return null;
+		proxy.setDefaultTargetDataSource(writeDataSource);
+		proxy.setTargetDataSources(targetDataSources);
+		return proxy;
+	}
+	
+	@Bean
+	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+		return new SqlSessionTemplate(sqlSessionFactory);
+	}
+	
+	@Bean
+	public PlatformTransactionManager annotationDrivenTransactionManager() {
+		return new DataSourceTransactionManager((DataSource) SpringContextUtil.getBean("roundRobinDataSouceProxy"));
 	}
 }
