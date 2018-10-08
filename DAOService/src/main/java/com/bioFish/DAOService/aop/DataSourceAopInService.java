@@ -37,8 +37,8 @@ public class DataSourceAopInService implements PriorityOrdered {
 	 * @Description: TODO
 	 * @return: void
 	 */
-	@Before(" execution(* com.wtl.DAOService.Execute.impl..*.*(..)) "
-			+ "and @annotation(com.wtl.DAOService.DataSource.ReadDataSource) "
+	@Before(" execution(* com.bioFish.DAOService.Execute.impl..*.*(..)) "
+			+ "and @annotation(com.bioFish.DAOService.DataSource.ReadDataSource) "
 			)
 	public void setReadDataSourceType() {
 		if(!DataSourceType.write.getType().equals(DataSourceContextHolder.getReadOrWrite())) {
@@ -52,8 +52,8 @@ public class DataSourceAopInService implements PriorityOrdered {
 	 * @Description: TODO
 	 * @return: void
 	 */
-	@Before(" execution(* com.wtl.DAOService.Execute.impl..*.*(..)) "
-			+ "and @annotation(com.wtl.DAOService.DataSource.WriteDataSource) "
+	@Before(" execution(* com.bioFish.DAOService.Execute.impl..*.*(..)) "
+			+ "and @annotation(com.bioFish.DAOService.DataSource.WriteDataSource) "
 			)
 	public void setWriteDataSourceType() {
 		DataSourceContextHolder.setWrite();

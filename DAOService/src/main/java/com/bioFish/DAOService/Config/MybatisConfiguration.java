@@ -58,7 +58,7 @@ public class MybatisConfiguration {
 			//数据源
 			sessionFactoryBean.setDataSource(roundRobinDataSouceProxy());
 			//实体类
-			sessionFactoryBean.setTypeAliasesPackage("com.wtl.DAOService.Entity");
+			sessionFactoryBean.setTypeAliasesPackage("com.bioFish.DAOService.Entity");
 			//mapper位置
 			Resource[] resources = new PathMatchingResourcePatternResolver().getResources(mapperLocations);
 			sessionFactoryBean.setMapperLocations(resources);
