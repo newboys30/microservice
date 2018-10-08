@@ -21,4 +21,9 @@ public class UserExecute {
 		User user = (User) dao.findForObject("UserMapper.selectByName", user_name);
 		return JsonUtil.createGsonString(user);
 	}
+	
+	@GetMapping("/hello")
+	public String hello() {
+		return "Hello MyBatis";
+	}
 }

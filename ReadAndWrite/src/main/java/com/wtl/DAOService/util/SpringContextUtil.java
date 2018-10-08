@@ -3,6 +3,7 @@ package com.wtl.DAOService.util;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * Spring工具类
@@ -11,6 +12,7 @@ import org.springframework.context.ApplicationContextAware;
  * @author: newbo
  * @date: 2018年10月8日 上午9:41:03
  */
+@Component
 public class SpringContextUtil implements ApplicationContextAware{
 	
 	private static ApplicationContext applicationContext = null;

@@ -15,10 +15,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.sun.jersey.api.core.DefaultResourceConfig;
 import com.wtl.DAOService.util.SpringContextUtil;
 
 
@@ -49,10 +53,24 @@ public class MybatisConfiguration {
 	
 	@Bean(name = "sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory() throws Exception{
-		SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
-		sessionFactoryBean.setDataSource(roundRobinDataSouceProxy());
-		
-		return null;
+		 try {
+			SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+			//数据源
+			sessionFactoryBean.setDataSource(roundRobinDataSouceProxy());
+			//实体类
+			sessionFactoryBean.setTypeAliasesPackage("com.wtl.DAOService.Entity");
+			//mapper位置
+			Resource[] resources = new PathMatchingResourcePatternResolver().getResources(mapperLocations);
+			sessionFactoryBean.setMapperLocations(resources);
+			
+			//设置mybatis-config.xml配置文件位置
+			sessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
+			
+			return sessionFactoryBean.getObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	/**
@@ -62,7 +80,7 @@ public class MybatisConfiguration {
 	 * @return
 	 * @return: AbstractRoutingDataSource
 	 */
-	@Bean
+	@Bean(name = "roundRobinDataSouceProxy")
 	public AbstractRoutingDataSource roundRobinDataSouceProxy() {
 		
 		/**
@@ -108,6 +126,13 @@ public class MybatisConfiguration {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 	
+	/**
+	 * 事务管理
+	 * @Title: annotationDrivenTransactionManager
+	 * @Description: TODO
+	 * @return
+	 * @return: PlatformTransactionManager
+	 */
 	@Bean
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return new DataSourceTransactionManager((DataSource) SpringContextUtil.getBean("roundRobinDataSouceProxy"));

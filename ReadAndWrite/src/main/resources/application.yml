@@ -23,7 +23,7 @@ mysql:
      readSize: 1  #读库个数
      type: com.alibaba.druid.pool.DruidDataSource
      mapperLocations: classpath:mapper/*.xml
-     configLocation: classpath:/mybatis-config.xml
+     configLocation: classpath:mybatis-config.xml
      write: 
        url: jdbc:mysql://192.168.1.126:3306/WTL_SAAS?characterEncoding=utf8&useSSL=false&useUnicode=true
        username: WTL
@@ -43,7 +43,6 @@ mysql:
        maxPoolPreparedStatementPerConnectionSize: 50
        removeAbandoned: true
        filters: stat
-       
      read: 
        url: jdbc:mysql://192.168.1.126:3306/WTL_SAAS?characterEncoding=utf8&useSSL=false&useUnicode=true
        username: WTL

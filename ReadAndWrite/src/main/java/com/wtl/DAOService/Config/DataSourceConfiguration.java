@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+
 /**
  * 数据源配置
  * @ClassName: DataSourceConfiguration
@@ -32,7 +33,7 @@ public class DataSourceConfiguration {
 	@ConfigurationProperties(prefix = "mysql.datasource.write")
 	@Primary
 	public DataSource writeDataSource() {
-		return DataSourceBuilder.create().build();
+		return DataSourceBuilder.create().type(dataSourceType).build();
 	}
 	
 	/**
@@ -45,6 +46,7 @@ public class DataSourceConfiguration {
 	@Bean(name = "readDataSource")
 	@ConfigurationProperties(prefix = "mysql.datasource.read")
 	public DataSource readDataSource() {
-		return DataSourceBuilder.create().build();
+		return DataSourceBuilder.create().type(dataSourceType).build();
 	}
+	
 }
