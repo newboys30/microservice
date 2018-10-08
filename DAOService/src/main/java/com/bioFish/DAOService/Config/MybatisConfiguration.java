@@ -9,6 +9,8 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +25,6 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.bioFish.DAOService.util.SpringContextUtil;
-import com.sun.jersey.api.core.DefaultResourceConfig;
 
 
 /**
@@ -36,6 +37,9 @@ import com.sun.jersey.api.core.DefaultResourceConfig;
 @Configuration
 @AutoConfigureAfter(DataSourceConfiguration.class)
 public class MybatisConfiguration {
+	
+	private static Logger log = LoggerFactory.getLogger(MybatisConfiguration.class);
+	
 	@Value("${mysql.datasource.readSize}")
 	private String readDataSourceSize;
 	@Value("${mysql.datasource.mapperLocations}")
@@ -105,7 +109,8 @@ public class MybatisConfiguration {
 			protected Object determineCurrentLookupKey() {
 				String typeKey = DataSourceContextHolder.getReadOrWrite();
 				if(null == typeKey) {
-					throw new NullPointerException("数据库路由时，决定使用哪个数据库源类型不能为空");
+					log.error("数据库路由时，决定使用哪个数据库源类型不能为空");
+					throw new NullPointerException();
 				}
 				//写库
 				if(typeKey.equals(DataSourceType.write.getType())) {

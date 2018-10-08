@@ -5,7 +5,6 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.PriorityOrdered;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.bioFish.DAOService.Config.DataSourceContextHolder;
 import com.bioFish.DAOService.Config.DataSourceType;
