@@ -7,4 +7,11 @@
 		from t_user
 		where user_name = #{user_name}
 	</select>
+	
+	<insert id="saveUser" parameterType="user">
+		insert into t_user
+		(user_name,user_password,user_company,user_role)
+		values
+		(#{user_name},#{user_password}#{user_company}#{user_role})
+	</insert>
 </mapper>

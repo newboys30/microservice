@@ -31,7 +31,7 @@ public class GeneralExe {
 	@RequestMapping(value = "/generel")
 	public String generel (String jsonStr) throws Exception {
 		
-		String path = "com.wtl.DAOService.Excute.Impl.";
+		String path = "com.bioFish.DAOService.Execute.impl.";
 		DAOParam daoParam = JsonUtil.changeGsonToBean(jsonStr, DAOParam.class);
 		String filename = daoParam.getFileName();
 		String methods = daoParam.getMethods();

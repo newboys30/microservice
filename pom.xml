@@ -17,7 +17,6 @@
 		<module>ZKService</module>
 		<module>KafkaService</module>
 		<module>ConfigService</module>
-		<module>ReadAndWrite</module>
 	</modules>
 
 	<parent>

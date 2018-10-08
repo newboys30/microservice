@@ -1,14 +1,15 @@
 package com.bioFish.DAOService.Execute.impl;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.bioFish.DAOService.Entity.User;
+import com.bioFish.DAOService.Execute.BaseExecute;
 import com.bioFish.DAOService.util.DaoSupport;
-import com.bioFish.Utils.JsonUtil;
 
 /**
  * User实际执行类
@@ -18,13 +19,28 @@ import com.bioFish.Utils.JsonUtil;
  * @date: 2018年10月8日 下午6:01:41
  */
 @Service("userExecute")
-public class UserExecute {
+public class UserExecute extends BaseExecute{
 	
 	@Resource
 	private DaoSupport dao;
 	
-	public String getAllUsers(String user_name) throws Exception{
-		List<User> users = (List<User>) dao.findForList("UserMapper.selectByName", user_name);
-		return JsonUtil.createGsonString(users);
+	public User getUserByName(String jsonStr) throws Exception{
+		String user_name = (String) super.jsonToObject(jsonStr, "String");
+		return (User) dao.findForList("UserMapper.selectByName", user_name);
+	}
+	
+	public Map<String,String> insertUser(String jsonStr) throws Exception{
+		Map<String,String> retMap = new HashMap<String,String>();
+		User user = (User) super.jsonToObject(jsonStr, "User");
+		int i = (int) dao.save("UserMapper.saveUser", user);
+		
+		if(0 != i) {
+			retMap.put("retMsg", "保存成功");
+			retMap.put("retFlag", "1");
+		}else {
+			retMap.put("retMsg", "保存失败");
+			retMap.put("retFlag", "0");
+		}
+		return retMap;
 	}
 }
