@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UserMapper">
+<mapper namespace="com.bioFish.DAOService.dao.usermapper.UserMapper">
 	<select id="selectByName" parameterType="string" resultType="user">
 		select user_id,user_name,user_password,user_company,user_role
 		from t_user
 		where user_name = #{user_name}
 	</select>
 	
-	<insert id="saveUser" parameterType="user">
+	<select id="selectById" parameterType="int" resultType="user">
+		select user_id,user_name,user_password,user_company,user_role
+		from t_user
+		where user_id = #{user_id}
+	</select>
+	
+	<insert id="saveUser" parameterType="user" useGeneratedKeys="true" keyProperty="user_id">
 		insert into t_user
 		(user_name,user_password,user_company,user_role)
 		values
-		(#{user_name},#{user_password}#{user_company}#{user_role})
+		(#{user_name},#{user_password},#{user_company},#{user_role})
 	</insert>
 </mapper>

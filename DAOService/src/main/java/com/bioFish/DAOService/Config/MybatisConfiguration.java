@@ -69,7 +69,6 @@ public class MybatisConfiguration {
 			
 			//设置mybatis-config.xml配置文件位置
 			sessionFactoryBean.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
-			
 			return sessionFactoryBean.getObject();
 		} catch (Exception e) {
 			e.printStackTrace();
