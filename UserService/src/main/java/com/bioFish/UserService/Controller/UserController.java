@@ -31,7 +31,6 @@ public class UserController {
 	
 	@PostMapping("/findAllUsers")
 	public String findAllUsers() throws Exception {
-		
 		return userService.findAllUser();
 	}
 	

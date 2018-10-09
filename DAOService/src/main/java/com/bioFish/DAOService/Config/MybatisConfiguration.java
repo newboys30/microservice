@@ -2,6 +2,7 @@ package com.bioFish.DAOService.Config;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.sql.DataSource;
@@ -25,6 +26,8 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.bioFish.DAOService.util.SpringContextUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.autoconfigure.PageHelperProperties;
 
 
 /**
@@ -128,6 +131,26 @@ public class MybatisConfiguration {
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
+	}
+	
+	/**
+	 * 分页插件
+	 * @Title: pageHelper
+	 * @Description: TODO
+	 * @return
+	 * @return: PageHelper
+	 */
+	@Bean
+	public PageHelper pageHelper() {
+		PageHelper pageHelper = new PageHelper();
+		Properties p = new Properties();
+		p.setProperty("offsetAsPageNum", "true");
+		p.setProperty("rowBoundsWithCount", "true");
+		p.setProperty("reasonable", "true");
+		p.setProperty("returnPageInfo", "chech");
+		p.setProperty("params", "count=countSql");
+		pageHelper.setProperties(p);
+		return pageHelper;
 	}
 	
 	/**

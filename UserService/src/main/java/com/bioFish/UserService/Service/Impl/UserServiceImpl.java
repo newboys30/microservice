@@ -1,14 +1,17 @@
 package com.bioFish.UserService.Service.Impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.bioFish.Params.DAOParam;
 import com.bioFish.UserService.Service.UserService;
 import com.bioFish.UserService.Service.feign.DaoFeignService;
 import com.bioFish.UserService.Service.feign.KafkaFeignService;
 import com.bioFish.UserService.Service.feign.RedisFeignService;
-import com.bioFish.Params.DAOParam;
 import com.bioFish.Utils.JsonUtil;
 
 @Service("userService")
@@ -36,8 +39,13 @@ public class UserServiceImpl implements UserService {
 	
 	public String findAllUser() throws Exception {
 		DAOParam daoParam = new DAOParam();
-		daoParam.setFileName("UserExcute");
-		daoParam.setMethods("findAllUser");
+		daoParam.setFileName("UserExecute");
+		daoParam.setMethods("queryPage");
+		Map<String,Object> pageMap = new HashMap<String,Object>();
+		pageMap.put("pageNum", "1");
+		pageMap.put("pageSize", "20");
+		pageMap.put("username", "admin");
+		daoParam.setJsonParam(JsonUtil.createGsonString(pageMap));
 		return daofeignService.generel(JsonUtil.createGsonString(daoParam));
 	}
 	

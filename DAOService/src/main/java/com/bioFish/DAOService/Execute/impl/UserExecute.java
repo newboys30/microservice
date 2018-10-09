@@ -2,8 +2,6 @@ package com.bioFish.DAOService.Execute.impl;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bioFish.DAOService.DataSource.ReadDataSource;
 import com.bioFish.DAOService.DataSource.WriteDataSource;
 import com.bioFish.DAOService.Entity.User;
-import com.bioFish.DAOService.Execute.BaseExecute;
 import com.bioFish.DAOService.dao.usermapper.UserMapper;
 import com.bioFish.DAOService.util.SpringContextUtil;
+import com.bioFish.Utils.JsonUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * User实际执行类
@@ -27,14 +28,14 @@ import com.bioFish.DAOService.util.SpringContextUtil;
  * @date: 2018年10月8日 下午6:01:41
  */
 @Service("userExecute")
-public class UserExecute extends BaseExecute{
+public class UserExecute {
 	
 	@Autowired
 	private UserMapper userMapper;
 	
 	@ReadDataSource
 	public User getUserByName(String jsonStr) throws Exception{
-		String user_name = (String) super.jsonToObject(jsonStr, "String");
+		String user_name = JsonUtil.changeGsonToBean(jsonStr, String.class);
 		return userMapper.selectByName(user_name);
 	}
 	
@@ -42,7 +43,7 @@ public class UserExecute extends BaseExecute{
 	@WriteDataSource
 	public Map<String,String> insertUser(String jsonStr) throws Exception{
 		Map<String,String> retMap = new HashMap<String,String>();
-		User user = (User) super.jsonToObject(jsonStr, "User");
+		User user = JsonUtil.changeGsonToBean(jsonStr, User.class);
 		int i = userMapper.saveUser(user);
 		if(0 != i) {
 			retMap.put("retMsg", "保存成功");
@@ -55,6 +56,25 @@ public class UserExecute extends BaseExecute{
 		return retMap;
 	}
 	
+	/**
+	 * 分页查询
+	 * String userName,int pageNum,int pageSize
+	 * @Title: queryPage
+	 * @Description: TODO
+	 * @return
+	 * @throws Exception
+	 * @return: PageInfo<User>
+	 */
+	@WriteDataSource
+	public PageInfo<User> queryPage(String jsonStr) throws Exception{
+		Map<String,Object> pageMap = JsonUtil.changeGsonToMaps(jsonStr);
+		int pageNum = pageMap.get("pageNum") == null?0:Integer.parseInt(pageMap.get("pageNum").toString());
+		int pageSize = pageMap.get("pageSize") == null?20:Integer.parseInt(pageMap.get("pageSize").toString());
+		String username = pageMap.get("username").toString();
+		Page<User> page = PageHelper.startPage(pageNum, pageSize);
+		userMapper.selectAll(username);
+		return page.toPageInfo();
+	}
 	
 	/**
 	 * 内部调用触发AOP拦截

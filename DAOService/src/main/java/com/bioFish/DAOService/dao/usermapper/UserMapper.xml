@@ -20,4 +20,10 @@
 		values
 		(#{user_name},#{user_password},#{user_company},#{user_role})
 	</insert>
+	
+	<select id="selectAll" parameterType="string" resultType="user">
+		select user_id,user_name,user_password,user_company,user_role
+		from t_user
+		where user_name = #{user_name}
+	</select>
 </mapper>

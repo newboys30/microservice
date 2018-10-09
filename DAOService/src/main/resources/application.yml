@@ -67,4 +67,4 @@ mysql:
 logging:
   level:
     root: INFO
-    com.wtl: DEBUG
+    com.bioFish: DEBUG
