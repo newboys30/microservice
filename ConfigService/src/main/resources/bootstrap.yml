@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloudconfigserver
+    name: config-server
   profiles:
     active: native
   cloud:
@@ -11,3 +11,10 @@ spring:
       server:
         native:
           searchLocations: classpath:/config
+          
+eureka:
+  instance:
+    hostname: localhost   
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/

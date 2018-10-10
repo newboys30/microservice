@@ -1,0 +1,20 @@
+#spring:
+#  application:
+#    name: kafkaserver
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      enabled: true
+#      label: ""
+#      profile: config
+      
+spring:
+  application:
+    name: kafkaserver
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloudconfigserver：8888
+      label: ""
+      profile: config
