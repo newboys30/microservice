@@ -13,8 +13,7 @@ spring:
     name: kafkaserver
   cloud:
     config:
-      discovery:
-        enabled: true
-        service-id: cloudconfigserver：8888
+      uri: http://localhost:8888
+      enabled: true
       label: ""
       profile: config
