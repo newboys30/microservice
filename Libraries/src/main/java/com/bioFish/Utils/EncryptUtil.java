@@ -25,20 +25,20 @@ public class EncryptUtil {
 	public static void main(String[] args) {
 		// md5加密测试
 		String md5_1 = md5("123456");
-		String md5_2 = md5("lee");
+		String md5_2 = md5("newboys");
 		System.out.println(md5_1 + "\n" + md5_2);
 		// sha加密测试
 		String sha_1 = sha("123456");
-		String sha_2 = sha("lee");
+		String sha_2 = sha("newboys");
 		System.out.println(sha_1 + "\n" + sha_2);
 		// base64加密
-		String base64E = base64Encode("lee");
+		String base64E = base64Encode("newboys");
 		System.out.println(base64E);
 		// base64解密
 		String base64D = base64Decode(base64E);
 		System.out.println(base64D);
 		// 二次加密（建议使用）
-		String doubleE = md5AndSha("wtl82823777");
+		String doubleE = md5AndSha("newboys");
 		System.out.println(doubleE);
 
 	}
