@@ -27,7 +27,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.bioFish.DAOService.util.SpringContextUtil;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.autoconfigure.PageHelperProperties;
 
 
 /**
