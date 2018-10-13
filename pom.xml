@@ -18,6 +18,7 @@
 		<module>KafkaService</module>
 		<module>ConfigService</module>
 		<module>Oauth2Service</module>
+		<module>ZuulService</module>
 	</modules>
 
 	<parent>
