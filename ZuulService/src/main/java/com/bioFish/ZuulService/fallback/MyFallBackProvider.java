@@ -57,7 +57,7 @@ public class MyFallBackProvider implements FallbackProvider {
 			
 			@Override
 			public InputStream getBody() throws IOException {
-				return new ByteArrayInputStream("服务咱不可用，请稍后...".getBytes());
+				return new ByteArrayInputStream("服务暂不可用，请稍后...".getBytes());
 			}
 			
 			@Override
