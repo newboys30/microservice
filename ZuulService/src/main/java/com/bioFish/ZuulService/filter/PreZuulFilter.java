@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -29,7 +30,7 @@ public class PreZuulFilter extends ZuulFilter {
 	public Object run() throws ZuulException {
 		HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
 		String host = request.getRemoteHost();
-		LOGGER.info("host======" + host);
+		PreZuulFilter.LOGGER.info("host:{}", host);
 		return null;
 	}
 
