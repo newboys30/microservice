@@ -26,7 +26,6 @@ public class ZuulServiceApplication {
 	@Bean
 	public PatternServiceRouteMapper serviceRouteMapper() {
 		return new PatternServiceRouteMapper("(?<name>^.+)-(?<version>v.+$)", "${version}/${name}");
-		
 	}
 		
 	@Bean
