@@ -6,6 +6,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.discovery.PatternServiceRouteMapper;
 import org.springframework.context.annotation.Bean;
 
+import com.bioFish.ZuulService.filter.PreZuulFilter;
+
 @SpringBootApplication
 @EnableZuulProxy
 public class ZuulServiceApplication {
@@ -24,5 +26,10 @@ public class ZuulServiceApplication {
 	@Bean
 	public PatternServiceRouteMapper serviceRouteMapper() {
 		return new PatternServiceRouteMapper("(?<name>^.+)-(?<version>v.+$)", "${version}/${name}");
+	}
+		
+	@Bean
+	public PreZuulFilter preZuulFilter() {
+		return new PreZuulFilter();
 	}
 }
