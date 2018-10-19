@@ -15,6 +15,18 @@ public class ZuulServiceApplication {
 		SpringApplication.run(ZuulServiceApplication.class, args);
 	}
 	
+	/**
+	 * 正则表达式
+	 * @Title: serviceRouteMapper
+	 * @Description: TODO
+	 * @return
+	 * @return: PatternServiceRouteMapper
+	 */
+	@Bean
+	public PatternServiceRouteMapper serviceRouteMapper() {
+		return new PatternServiceRouteMapper("(?<name>^.+)-(?<version>v.+$)", "${version}/${name}");
+	}
+
 	@Bean
 	public PreZuulFilter preZuulFilter() {
 		return new PreZuulFilter();
