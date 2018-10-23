@@ -1,5 +1,7 @@
 package com.bioFish.KafkaService.execute;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,9 +20,28 @@ public class GeneralExecute {
 	
 	@Autowired
 	private KafkaDaoSender kafkaDaoSender;
+	/**
+	 * 测试方法
+	 * @Title: testDaoExe
+	 * @Description: TODO
+	 * @return: void
+	 */
+	@RequestMapping(value = "/testDaoExe")
+	public void testDaoExe() {
+		kafkaDaoSender.testsend();
+	}
 	
-	@RequestMapping(value = "/generelExe")
-	public void generalExe() {
-		kafkaDaoSender.send();
+	/**
+	 * 通用执行器
+	 * @Title: generalDaoExe
+	 * @Description: TODO
+	 * @param exeMap topic：节点名称 exeJson 执行Json
+	 * @return: void
+	 */
+	@RequestMapping(value = "/generalDaoExe")
+	public void generalDaoExe(Map<String,String> exeMap) {
+		String topic = exeMap.get("topic");
+		String exeJson = exeMap.get("exeJson");
+		kafkaDaoSender.generalSend(topic, exeJson);
 	}
 }

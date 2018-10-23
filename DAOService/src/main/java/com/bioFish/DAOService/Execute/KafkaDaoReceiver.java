@@ -1,4 +1,4 @@
-package com.bioFish.KafkaService.execute.receiver;
+package com.bioFish.DAOService.Execute;
 
 import java.util.Optional;
 
@@ -6,17 +6,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-
-/**
- * kafka接收者
- * @ClassName: KafkaReceiver
- * @Description: TODO
- * @author: newbo
- * @date: 2018年9月26日 下午5:24:26
- */
 @Component
-public class KafkaReceiver {
-	
+public class KafkaDaoReceiver {
 	/**
 	 * 测试方法
 	 * @Title: testlisten
@@ -32,5 +23,4 @@ public class KafkaReceiver {
 			System.out.println("message====" + message);
 		}
 	}
-	
 }

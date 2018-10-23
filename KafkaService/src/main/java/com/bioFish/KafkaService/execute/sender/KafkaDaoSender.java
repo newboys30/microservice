@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-
 /**
  * kafka发送
  * @ClassName: KafkaSender
@@ -20,7 +19,25 @@ public class KafkaDaoSender {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 	
-	public void send() {
-		kafkaTemplate.send("testKafka","hello,kafka  "  + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+	/**
+	 * 测试方法
+	 * @Title: testsend
+	 * @Description: TODO
+	 * @return: void
+	 */
+	public void testsend() {
+		kafkaTemplate.send("testKafka","hello,kafka"  + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
 	}
+	
+	/**
+	 * 通用发送方法
+	 * 目前采用只发不管模式，日后做异步处理
+	 * @Title: generalSend
+	 * @Description: TODO
+	 * @return: void
+	 */
+	public void generalSend(String topic,String exeJson) {
+		kafkaTemplate.send(topic, exeJson);
+	}
+	
 }
