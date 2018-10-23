@@ -1,0 +1,35 @@
+zuul:
+  prefix: /saas
+#  ignored-services:
+#  - "*"
+  routes:
+    userservice:
+      path: /userservice/**
+      service-id: userservice
+#      url: http://localhost:9110/
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+    
+ribbon:
+  eureka:
+    enabled: false
+  
+userservice:    #service-id 负载均衡
+  ribbon:
+    listOfServers: localhost:9110
+
+server:
+  port: 8040
+  
+spring:
+  application:
+    name: zuulservice
+    
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
+      
