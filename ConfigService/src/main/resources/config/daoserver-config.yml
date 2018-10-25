@@ -15,7 +15,7 @@ spring:
 mybatis:
   type-aliases-package: com.wtl.DAOService.Entity
   mapper-locations:
-  - classpath:/com/bioFish/DAOService/dao/*/*.xml
+  - classpath:/com/bioFish/DAOService/dao/*mapper/*.xml
   config-location: classpath:mybatis-config.xml
 
 mysql: 
