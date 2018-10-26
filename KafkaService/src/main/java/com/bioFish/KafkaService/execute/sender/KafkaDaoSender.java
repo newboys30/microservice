@@ -36,7 +36,7 @@ public class KafkaDaoSender {
 	 * @Description: TODO
 	 * @return: void
 	 */
-	public void generalSend(String topic,String exeJson) {
+	public void generalDaoSend(String topic,String exeJson) {
 		kafkaTemplate.send(topic, exeJson);
 	}
 	

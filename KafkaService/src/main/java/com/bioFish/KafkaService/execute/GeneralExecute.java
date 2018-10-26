@@ -42,6 +42,6 @@ public class GeneralExecute {
 	public void generalDaoExe(Map<String,String> exeMap) {
 		String topic = exeMap.get("topic");
 		String exeJson = exeMap.get("exeJson");
-		kafkaDaoSender.generalSend(topic, exeJson);
+		kafkaDaoSender.generalDaoSend(topic, exeJson);
 	}
 }
