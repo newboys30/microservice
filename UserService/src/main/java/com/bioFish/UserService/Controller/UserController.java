@@ -13,6 +13,8 @@ import com.bioFish.Params.WebParam;
 import com.bioFish.UserService.Service.UserService;
 import com.bioFish.Utils.JsonUtil;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class UserController {
 	
@@ -22,6 +24,7 @@ public class UserController {
 	@Autowired
 	private HttpServletRequest request;
 	
+	@ApiOperation(value = "按照ID查询", notes = "user信息")
 	@PostMapping("/getUserById/{id}")
 	public String getUserById(@PathVariable Long id) throws Exception {
 		return userService.getUserById(id.toString());
