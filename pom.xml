@@ -19,6 +19,7 @@
 		<module>ConfigService</module>
 		<module>Oauth2Service</module>
 		<module>ZuulService</module>
+		<module>Pojo-Manager</module>
 	</modules>
 
 	<parent>

@@ -102,6 +102,18 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
+        
+        <dependency>
+			<groupId>com.bioFish</groupId>
+			<artifactId>Libraries</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.bioFish</groupId>
+			<artifactId>Pojo-Manager</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 	</dependencies>
 

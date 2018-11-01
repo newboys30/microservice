@@ -1,4 +1,4 @@
-package com.bioFish.DAOService.Entity;
+package com.bioFish.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
