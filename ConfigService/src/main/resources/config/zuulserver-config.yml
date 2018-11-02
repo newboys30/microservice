@@ -33,3 +33,8 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8900/eureka/
       
+logging:
+  level:
+    root: INFO
+    com.bioFish: INFO
+      
