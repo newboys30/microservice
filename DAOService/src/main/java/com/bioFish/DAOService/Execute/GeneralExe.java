@@ -1,6 +1,8 @@
 package com.bioFish.DAOService.Execute;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bioFish.Params.DAOParam;
 import com.bioFish.Utils.JsonUtil;
@@ -11,6 +13,7 @@ import com.bioFish.Utils.JsonUtil;
  * @param <T>
  *
  */
+@RestController
 public class GeneralExe {
 	
 	@Autowired
@@ -25,6 +28,7 @@ public class GeneralExe {
 	 * @throws Exception
 	 * @return: String
 	 */
+	@RequestMapping("/generel")
 	public String generel (String jsonStr) throws Exception {
 		
 		String path = "com.bioFish.DAOService.Execute.impl.";
