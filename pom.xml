@@ -20,6 +20,7 @@
 		<module>Oauth2Service</module>
 		<module>ZuulService</module>
 		<module>Pojo-Manager</module>
+		<module>LoginService</module>
 	</modules>
 
 	<parent>
