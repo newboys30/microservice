@@ -1,23 +1,22 @@
 package com.bioFish.Entity.User_Roles_Resource;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * 用户角色
- * @ClassName: User_Role
+ * 资源
+ * @ClassName: Resource
  * @Description: TODO
  * @author: newbo
- * @date: 2018年11月6日 上午11:24:23
+ * @date: 2018年11月6日 上午11:27:28
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class User_Role {
-	private Long user_Id;
-	private String user_Name;
-	List<Role_Resource> roles;
+public class Resources {
+	private String resource_Id;
+	private String resource_Name;
 }

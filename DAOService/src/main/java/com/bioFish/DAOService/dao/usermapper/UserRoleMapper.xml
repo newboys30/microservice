@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- User-Role操作 -->
+<mapper namespace="UserRoleMapper">
+	<!-- 根据userid查询全部角色信息 -->
+	<select id="findRolesByUserId" parameterType="string" resultType="role">
+		SELECT r.role_id,r.role_name FROM t_role r
+		INNER JOIN t_user_mapping_role umr ON umr.role_id = r.role_id
+		WHERE umr.user_id = #{user_id}
+	</select>
+	
+	<select id="findResourceByRoleId" parameterType="string" resultType="resources">
+		SELECT r.resource_id,r.resource_name FROM t_resource r
+		INNER JOIN t_role_mapping_resource rmr on r.resource_id = rmr.resource_id
+		WHERE rmr.role_id = #{role_id}
+	</select>
+	
+</mapper>

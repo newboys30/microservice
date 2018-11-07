@@ -2,6 +2,10 @@ package com.bioFish.Entity.User_Roles_Resource;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 /**
  * 角色资源
  * @ClassName: Role_Resource
@@ -9,14 +13,11 @@ import java.util.List;
  * @author: newbo
  * @date: 2018年11月6日 上午11:24:38
  */
+@Data
+@AllArgsConstructor
+@Accessors(chain = true)
 public class Role_Resource {
 	private String role_Id;
 	private String role_name;
-	private List<Resource> resources;
-	
-	public Role_Resource(String role_Id, String role_name, List<Resource> resources) {
-		this.role_Id = role_Id;
-		this.role_name = role_name;
-		this.resources = resources;
-	}
+	private List<Resources> resources;
 }

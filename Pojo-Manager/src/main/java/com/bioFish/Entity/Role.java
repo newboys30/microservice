@@ -1,4 +1,4 @@
-package com.bioFish.Entity.User_Roles_Resource;
+package com.bioFish.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,17 +6,18 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 /**
- * 资源
- * @ClassName: Resource
+ * 角色信息
+ * @ClassName: Role
  * @Description: TODO
  * @author: newbo
- * @date: 2018年11月6日 上午11:27:28
+ * @date: 2018年11月7日 上午11:16:28
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Resource {
-	private String resource_Id;
-	private String resource_Name;
+public class Role {
+	private String role_Id;
+	private String role_Name;
+	private String role_description;
 }
