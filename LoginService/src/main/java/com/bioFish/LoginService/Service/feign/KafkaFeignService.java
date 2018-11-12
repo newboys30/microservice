@@ -11,5 +11,4 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  */
 @FeignClient("kafkaservice")
 public interface KafkaFeignService {
-	
 }

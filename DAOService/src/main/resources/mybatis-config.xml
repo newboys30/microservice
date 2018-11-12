@@ -34,4 +34,14 @@
 		
 		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
 	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="Integer" type="java.lang.Integer"/>
+		<typeAlias alias="Long" type="java.lang.Long"/>
+		<typeAlias alias="HashMap" type="java.util.HashMap"/>
+		<typeAlias alias="ArrayList" type="java.util.ArrayList"/>
+		<typeAlias alias="user" type="com.bioFish.Entity.User"/>
+		<typeAlias alias="role" type="com.bioFish.Entity.Role"/>
+		<typeAlias alias="resources" type="com.bioFish.Entity.User_Roles_Resource.Resources"/>
+	</typeAliases>
 </configuration>

@@ -18,4 +18,15 @@ public interface LoginService {
 	 * @return: String
 	 */
 	public String testKafka() throws Exception;
+	
+	/**
+	 * 权限树
+	 * @Title: roleTree
+	 * @Description: TODO
+	 * @param user_id
+	 * @return
+	 * @throws Exception
+	 * @return: String
+	 */
+	public String roleTree(String user_id) throws Exception;
 }

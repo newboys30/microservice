@@ -24,7 +24,7 @@ import com.bioFish.Utils.JsonUtil;
  * @author: newbo
  * @date: 2018年11月7日 上午12:03:24
  */
-@Service("userroleExecute")
+@Service("userRoleExecute")
 @SuppressWarnings("unchecked")
 public class UserRoleExecute {
 	

@@ -1,10 +1,16 @@
 package com.bioFish.LoginService.Controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bioFish.LoginService.Service.LoginService;
+import com.bioFish.Params.WebParam;
+
 
 /**
  * 登陆控制器
@@ -19,9 +25,17 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private HttpServletRequest request;
+	
 	@GetMapping("/testLogin")
 	public String testLogin() throws Exception{
+		Map<String,Object> param = WebParam.changeWebParam(request);
+		String user_id = param.get("user_id") == null?"":param.get("user_id").toString();
+		if("".equals(user_id))
+			return "请输入用户id";
 		
-		return loginService.testKafka();
+		return loginService.roleTree(user_id);
 	}
+	
 }
