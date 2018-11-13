@@ -1,5 +1,9 @@
 package com.bioFish.UserService.Service;
 
+import java.util.Map;
+
+import com.bioFish.Entity.User;
+
 public interface UserService {
 	
 	public String getUserById (String str) throws Exception;
@@ -15,4 +19,14 @@ public interface UserService {
 	public void redisTest() throws Exception;
 	
 	public void kafkaTest() throws Exception;
+	
+	/**
+	 * 注册用户
+	 * @Title: registUser
+	 * @Description: TODO
+	 * @return
+	 * @throws Exception
+	 * @return: int
+	 */
+	public Map<String,Object> registUser(User user) throws Exception;
 }

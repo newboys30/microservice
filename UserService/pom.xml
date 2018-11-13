@@ -74,6 +74,18 @@
 			<version>2.9.2</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.bioFish</groupId>
+			<artifactId>Libraries</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.bioFish</groupId>
+			<artifactId>Pojo-Manager</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

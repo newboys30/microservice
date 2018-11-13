@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.bioFish.Entity.User;
 import com.bioFish.Params.DAOParam;
 import com.bioFish.UserService.Service.UserService;
 import com.bioFish.UserService.Service.feign.DaoFeignService;
@@ -72,5 +73,23 @@ public class UserServiceImpl implements UserService {
 	public void kafkaTest() throws Exception{
 		kafkaFeignService.generelExe("");
 	}
+	
+	/**
+	 * 注册用户
+	 * @Title: registUser
+	 * @Description: TODO
+	 * @return
+	 * @throws Exception
+	 * @return: int
+	 */
+	public Map<String,Object> registUser(User user) throws Exception{
+		DAOParam dao = new DAOParam();
+		dao.setFileName("UserExecute");
+		dao.setMethods("insertUser");
+		dao.setJsonParam(JsonUtil.createGsonString(user));
 		
+		String retStr = daofeignService.generel(JsonUtil.createGsonString(dao));
+		Map<String,Object> retMap = JsonUtil.changeGsonToMaps(retStr);
+		return retMap;
+	}
 }

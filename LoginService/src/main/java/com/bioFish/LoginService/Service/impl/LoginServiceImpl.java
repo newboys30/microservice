@@ -54,7 +54,6 @@ public class LoginServiceImpl implements LoginService {
 		daoParam.setJsonParam(JsonUtil.createGsonString(user_id));
 		daoParam.setFileName("UserRoleExecute");
 		daoParam.setMethods("getUserRoleByUserId");
-		
 		return daoFeignService.generel(JsonUtil.createGsonString(daoParam));
 	}
 	

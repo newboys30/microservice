@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bioFish.Entity.User;
+import com.bioFish.Params.JsonObject;
 import com.bioFish.Params.WebParam;
 import com.bioFish.UserService.Service.UserService;
 import com.bioFish.Utils.JsonUtil;
@@ -50,6 +52,30 @@ public class UserController {
 	@PostMapping("/kafkaTest")
 	public void kafkaTest() throws Exception {
 		userService.kafkaTest();
+	}
+	
+	/**
+	 * 用户注册
+	 * @Title: registUser
+	 * @Description: TODO
+	 * @return
+	 * @throws Exception
+	 * @return: JsonObject
+	 */
+	@PostMapping("/registUser")
+	public JsonObject registUser() throws Exception{
+		JsonObject json = new JsonObject();
+		boolean success = false;
+		User user = (User) WebParam.changeWebParam(request, User.class);
+		Map<String,Object> retMap = userService.registUser(user);
+		
+		String retFlag = retMap.get("retFlag").toString();
+		if("1".equals(retFlag)) {
+			success = true;
+		}
+		json.setSuccess(success);
+		json.setMsg(retMap.get("retMsg").toString());
+		return json;
 	}
 	
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.bioFish.Utils.MapTurnPojo;
+
 
 /**
  * 页面参数转换工具
@@ -50,4 +52,18 @@ public class WebParam {
 		return returnMap;
 	}
 	
+	/**
+	 * 页面参数转换为实体类
+	 * @Title: changeWebParam
+	 * @Description: TODO
+	 * @param request
+	 * @param clazz
+	 * @return
+	 * @return: Object
+	 */
+	public static Object changeWebParam(HttpServletRequest request, Class<?> clazz) {
+		Map<String,Object> map = changeWebParam(request);
+		Object obj = MapTurnPojo.mapToObject(map, clazz);
+		return obj;
+	}
 }
