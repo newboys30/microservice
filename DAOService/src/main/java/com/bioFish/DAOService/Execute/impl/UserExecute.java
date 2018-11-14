@@ -66,7 +66,7 @@ public class UserExecute {
 	 * @throws Exception
 	 * @return: PageInfo<User>
 	 */
-	@WriteDataSource
+	@ReadDataSource
 	public PageInfo<User> queryPage(String jsonStr) throws Exception{
 		Map<String,Object> pageMap = JsonUtil.changeGsonToMaps(jsonStr);
 		int pageNum = pageMap.get("pageNum") == null?0:Integer.parseInt(pageMap.get("pageNum").toString());

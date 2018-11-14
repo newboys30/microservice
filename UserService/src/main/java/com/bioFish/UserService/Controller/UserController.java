@@ -13,6 +13,7 @@ import com.bioFish.Entity.User;
 import com.bioFish.Params.JsonObject;
 import com.bioFish.Params.WebParam;
 import com.bioFish.UserService.Service.UserService;
+import com.bioFish.Utils.EncryptUtil;
 import com.bioFish.Utils.JsonUtil;
 
 import io.swagger.annotations.ApiOperation;
@@ -67,6 +68,14 @@ public class UserController {
 		JsonObject json = new JsonObject();
 		boolean success = false;
 		User user = (User) WebParam.changeWebParam(request, User.class);
+		
+		String user_name = user.getUser_name();
+		String user_password = user.getUser_password();
+		
+		//加盐
+		String newpwd = EncryptUtil.md5(user_password + user_name);
+		user.setUser_password(newpwd);
+		
 		Map<String,Object> retMap = userService.registUser(user);
 		
 		String retFlag = retMap.get("retFlag").toString();
