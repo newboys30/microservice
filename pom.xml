@@ -21,6 +21,7 @@
 		<module>ZuulService</module>
 		<module>Pojo-Manager</module>
 		<module>LoginService</module>
+		<module>UserRoleService</module>
 	</modules>
 
 	<parent>

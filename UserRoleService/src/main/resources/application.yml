@@ -1,0 +1,16 @@
+server:
+  port: 9120
+  
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url-path: http://${eureka.instance.hostname}:8900/info
+    health-check-url-path: http://${eureka.instance.hostname}:8900/health
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
+
+spring:
+  application:
+    name: userroleservice
+    
