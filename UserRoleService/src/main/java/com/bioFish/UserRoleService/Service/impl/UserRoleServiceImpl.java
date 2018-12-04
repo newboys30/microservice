@@ -2,12 +2,10 @@ package com.bioFish.UserRoleService.Service.impl;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bioFish.Entity.Role;
 import com.bioFish.UserRoleService.Service.UserRoleService;
-import com.bioFish.UserRoleService.Service.feign.DaoFeignService;
 
 /**
  * 用户角色实现
@@ -19,8 +17,6 @@ import com.bioFish.UserRoleService.Service.feign.DaoFeignService;
 @Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService {
 	
-	@Autowired
-	private DaoFeignService daofeignService;
 	
 	public Map<String,Object> saveRole(Role role) throws Exception{
 		

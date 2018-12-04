@@ -1,0 +1,13 @@
+security:
+  user:
+    name: wyx
+    password: 666666
+    
+eureka:
+  instance:
+    hostname: localhost
+    status-page-url-path: http://${eureka.instance.hostname}:8900/info
+    health-check-url-path: http://${eureka.instance.hostname}:8900/health
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8900/eureka/
