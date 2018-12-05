@@ -34,6 +34,6 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 			.withClient("clientapp")
 			.secret("112233")
 			.authorities("password")
-			.scopes("read_userinfo","read_contacts");
+			.scopes("read_userinfo");
 	}
 }
