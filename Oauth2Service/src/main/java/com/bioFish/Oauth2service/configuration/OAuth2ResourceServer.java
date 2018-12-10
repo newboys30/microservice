@@ -1,4 +1,4 @@
-package com.bioFish.Oauth2service.config;
+package com.bioFish.Oauth2service.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
