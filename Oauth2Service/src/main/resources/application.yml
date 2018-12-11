@@ -15,17 +15,26 @@ spring:
     url: jdbc:mysql://192.168.1.126:3306/WTL_SAAS?characterEncoding=utf8&useSSL=false&useUnicode=true
     username: WTL
     password: WTL82823777
-    minIdle: 5
-    maxActive: 100
-    initialSize: 10
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxPoolPreparedStatementPerConnectionSize: 50
-    removeAbandoned: true
-    filters: stat
+
+
+#  druid:
+#    minIdle: 5
+#    maxActive: 100
+#    initialSize: 10
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 300000
+#    validationQuery: select 'x'
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxPoolPreparedStatementPerConnectionSize: 50
+#    removeAbandoned: true
+#    filters: stat
+
+mybatis:
+  type-aliases-package: com.bioFish.Entity.*
+  mapper-locations:
+  - classpath:/com/bioFish/Oauth2service/dao/*.xml
+  config-location: classpath:mybatis-config.xml
